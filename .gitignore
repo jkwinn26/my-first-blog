@@ -4,4 +4,5 @@ db.sqlite3
 /bin
 /lib
 /static
+/logs
 .DS_Store
