@@ -1,6 +1,12 @@
-{% extends 'blog/base.html' %}
+{% extends 'home/base.html' %}
 
 {% block content %}
+  {% if posts.count == 0 %}
+    <div style="margin-top: 20px;">
+      <p> Huh? You don't have any blogs in draft.</p> <strong style="font-size:2em;">GET TO WORK!</strong>
+    </div>
+  {% endif %}
+  
   {% for post in posts %}
     <div class="post">
       <p class="date">created: {{ post.created_date|date:"d-m-Y" }}</p>

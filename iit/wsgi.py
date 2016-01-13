@@ -32,6 +32,14 @@ sys.path.append('/home/jon/web/insideit/lib/python3.4/site-packages/')
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "iit.settings")
 
+# Replace below wih the following and save when you get the "populate isn't reentrant" error
+# Then put everything back to how it was! -jkw (see http://stackoverflow.com/questions/27093746/django-stops-working-with-runtimeerror-populate-isnt-reentrant)
+#def application(environ, start_response):
+#    if environ['mod_wsgi.process_group'] != '': 
+#        import signal
+#        os.kill(os.getpid(), signal.SIGINT)
+#    return ["killed"]
+
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 
