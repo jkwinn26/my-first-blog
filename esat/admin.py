@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import AssetType, Asset
+from .models import AssetType, Asset, Department, Employee
 
 # Register your models here.
 class AssetAdmin(admin.ModelAdmin):
@@ -10,3 +10,5 @@ class AssetAdmin(admin.ModelAdmin):
 
 admin.site.register(AssetType)
 admin.site.register(Asset, AssetAdmin)
+admin.site.register(Department)
+admin.site.register(Employee)

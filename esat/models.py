@@ -41,3 +41,50 @@ class Asset(models.Model):
     
     def __str__(self):
         return self.tag + "(" + str(self.type) + ")"
+
+class Department(models.Model):
+    number = models.PositiveSmallIntegerField()
+    name = models.CharField(max_length=50, blank=False, null=False)
+    supervisor = models.CharField(max_length=50, blank=False, null=False)
+    
+    def __str__(self):
+        return self.name
+
+# Employee Model (for New Employee Form)
+# TODO: do one-to-one association with auth.user
+# (& with AD auth, this can be a one-stop-shop to create AD accounts/new employees).
+class Employee(models.Model):
+    FULL_TIME = 'FT'
+    PART_TIME = 'PT'
+    CONTRACTOR_FULL_TIME = 'CF'
+    CONTRACTOR_PART_TIME = 'CP'
+    STUDENT_FULL_TIME = 'SF'
+    STUDENT_PART_TIME = 'SP'
+    TYPE_CHOICES = (
+        (FULL_TIME, 'Full-time'),
+        (PART_TIME, 'Part-time'),
+        (CONTRACTOR_FULL_TIME, 'Contractor full-time'),
+        (CONTRACTOR_PART_TIME, 'Contractor part-time'),
+        (STUDENT_FULL_TIME, 'Student full-time'),
+        (STUDENT_PART_TIME, 'Student part-time'),
+    )
+    employee_id = models.CharField(max_length=5, blank=False, null=False, primary_key=True) #00000
+    last_name = models.CharField(max_length=75, blank=False, null=False)
+    first_name = models.CharField(max_length=75, blank=False, null=False)
+    middle_name = models.CharField(max_length=50, blank=False, null=False)
+    job_title = models.CharField(max_length=50, blank=False, null=False)
+    emp_type = models.CharField(max_length=2, choices=TYPE_CHOICES, default=FULL_TIME)
+    department = models.ForeignKey('esat.Department')
+    new_phone = models.BooleanField(default=False)
+    outside_line = models.BooleanField(default=False)
+    phone_extn = models.PositiveSmallIntegerField(blank=True, null=True)
+    start_date = models.DateField(blank=False)
+    work_location = models.CharField(max_length=50, blank=True, null=False)
+    termination_date = models.DateField(null=True, blank=True)
+    termination_cause = models.TextField(null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
+    
+    def __str__(self):
+        return self.first_name + " " + self.last_name + "(" + self.employee_id + ")"
+        
+#TODO: add tie-ins for CPSI/Evident, AD/Windows, Exchange/Outlook, PACS, Orchard
