@@ -28,6 +28,7 @@ class Asset(models.Model):
     assigned_user = models.ForeignKey('auth.user',
             blank=True, null=True, related_name='asset_owner')
     issued_date = models.DateTimeField(blank=True, null=True)
+    returned_date = models.DateTimeField(blank=True, null=True)
     active = models.BooleanField(default=True)
     decommission_date = models.DateField(blank=True, null=True)
     
