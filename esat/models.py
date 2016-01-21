@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.core.validators import RegexValidator
 
 # Allow admins to define Asset Types
 class AssetType(models.Model):
@@ -89,3 +90,42 @@ class Employee(models.Model):
         return self.first_name + " " + self.last_name + "(" + self.employee_id + ")"
         
 #TODO: add tie-ins for CPSI/Evident, AD/Windows, Exchange/Outlook, PACS, Orchard
+#TODO: Licensing - add ability to specify SoftwarePackage licensing options and associate an "open" license to a user/Employee
+#   !!! MAYBE ADD LICENSING AS PART OF ASSETS !!!
+class SoftwareVendor(models.Model):
+    name = models.CharField(max_length=100, blank=False, null=False)
+    support_email = models.EmailField()
+    # Perhaps a more complete/better solution: https://github.com/stefanfoulis/django-phonenumber-field
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+    support_phone = models.CharField(max_length=17, validators=[phone_regex], blank=True) # validators should be a list
+    
+    def __str__(self):
+        return self.name
+    
+class SoftwarePackage(models.Model):
+    #DOMAIN = 'DO'    # Domain-level system like AD/Kerberos
+    PC_CLIENT = 'PC'  # EG. Orchard Harvest, CPSI/Evident
+    LOCAL_WEB = 'LW'  # EG. Orchard Webstation, PolicyTech, Spiceworks
+    REMOTE_WEB = 'RW' # Medicare? (other systems outside the organization that IT needs to worry about)
+    TYPE_CHOICES = (
+        (PC_CLIENT, 'PC Client Install'),
+        (LOCAL_WEB, 'Internal Website/System'),
+        (REMOTE_WEB, 'External Website/System'),
+    )
+    #TODO: Added LICENSE_TYPES
+    name = models.CharField(max_length=100, blank=False, null=False)
+    version = models.CharField(max_length=25, blank=True, null=True)
+    vendor = models.ForeignKey('esat.SoftwareVendor')
+    type = models.CharField(max_length=2, choices=TYPE_CHOICES, default=PC_CLIENT)
+    multiple_logins = models.BooleanField(default=False, null=False)
+    max_login_count = models.PositiveSmallIntegerField(default=1, null=False)
+    ip_address = models.GenericIPAddressField(protocol='IPv4', blank=False, null=False)
+    port_number = models.PositiveSmallIntegerField(blank=True, null=True)
+    url = models.URLField(blank=True, null=True)
+    #TODO: add license_type
+    #TODO: add license_count (only valid if type == SEAT)?
+    
+    def __str__(self):
+        return self.name
+    
+    
