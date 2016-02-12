@@ -43,5 +43,5 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "iit.settings")
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 
-import iit.monitor
-iit.monitor.start(interval=1.0)
+#import iit.monitor
+#iit.monitor.start(interval=1.0)

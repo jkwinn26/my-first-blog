@@ -5,10 +5,11 @@ h1 a {
 
 body {
     padding-left: 15px;
+    padding-right: 15px;
 }
 
 .page-header {
-    background-color: #ff9400;
+    background-color: #337AB7;
     margin-top: 0;
     margin-bottom: 0;
     padding: 20px 20px 20px 40px;
@@ -36,7 +37,8 @@ h1, h2, h3, h4 {
 }
 
 /* THE GOOD STUFF (FOR DROP-DOWN MENUS */
-.nav {
+/** commented out as I've implemented bootstrap instead **/
+/*.nav {
   display: inline-block;
   width: 100%;
   background-color: #4CAF50;
@@ -89,89 +91,7 @@ button.dropbtn a {
   text-decoration: none;
 }
 
-/* GARBAGE!!!! */
-
-/* "TOP" Menu Stuff */
-/*
-.top-menu, .top-menu:hover, .top-menu:visited {
-    color: #ffffff;
-    float: right;
-    font-size: 20pt;
-    margin-right: 20px;
-}
-*/
-
-/* "DIV" Menu Stuff */
-/*
-div.site-menu-div {
-  margin-top: 0;
-  margin-bottom: 5px;
-  width: 100%;
-  
-  padding: 0px, auto;
-}
-
-.menu {
-  position: relative;
-  display: inline-block;
-  background-color: #5CB85C;
-  padding: 0;
-}
-
-.menu-right {
-  float: right;
-  margin-top: 14px;
-}
-*/
-
-/*
-.menu a {
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  font-size: 16px;
-  text-decoration: none;
-}
-.menu a:hover, .dropdown:hover {
-  background-color: #3e8e41;
-  text-decoration: none;
-}
 .active {
-  background-color: #4caf50;
-}
-*/
+  background-color: #3D443D;
+}*/
 
-/* ENHANCED DROP-DOWN MENU FUNCTIONALITY */
-/* Style The Dropdown Button */
-/*
-.dropbtn {
-    display: block;
-    color: white;
-    padding: 14px 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-*/
-
-/* Change color of dropdown links on hover */
-/*.dropdown-content a:hover {background-color: #f1f1f1}*/
-
-/*
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-*/

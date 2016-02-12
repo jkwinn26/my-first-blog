@@ -1,0 +1,25 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+  <h2>Employee List </h2>
+  {% for emp in emp_list %}
+  <div style="
+      border: 2px solid gray;
+      border-radius: 10px;
+      padding-left: 10px;
+      margin-bottom: 5px;
+  ">
+    <p>
+      <div style="float:right; margin-right:10px;">
+        <a href="{% url 'esat_edit_emp' emp.employee_id %}" style="text-decoration:none;"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+      </div>
+      <div style="margin:0 auto;">
+        <strong>Employee ID: {{emp.employee_id}}</strong><br>
+        <strong>Last Name:</strong> {{emp.last_name}} &nbsp <strong>First Name:</strong> {{emp.first_name}}
+      </div>
+    </p>
+  </div>
+  {% endfor %}
+
+{% endblock %}

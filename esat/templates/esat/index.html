@@ -1,0 +1,17 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+<div class="jumbotron">
+  <h2>Employee, Security and Asset Tracking (ESAT)</h2>
+  <p>Welcome to the IT homepage for managing and tracking Employees, Security access and organization Assets.
+  We hope this becomes your go-to source for managing your employees and notifying IT of changes in your staff 
+  as well as any asset needs you may have.<br>For any questions or concerns, please contact IT at 208-852-4118 (x118).</p>
+  <p>
+    Here's what you can do for now:<br>
+    <p><a class="btn btn-lg btn-primary" href="{% url 'esat.views.employee_new' %}" role="button">Add an employee &raquo;</a></p>
+    <p><a class="btn btn-lg btn-primary" href="{% url 'esat.views.employee_list' %}" role="button">Change an employee &raquo;</a></p>
+  </p>
+</div>
+
+{% endblock %}

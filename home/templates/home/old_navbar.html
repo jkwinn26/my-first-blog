@@ -1,0 +1,46 @@
+<!--
+  this was my home-grown nav-bar that Andy helped me make.
+  For this site, I prefer the more functional bootstrap version.
+-->
+    <div class="nav">
+      <!-- LEFT -->
+      <div class="dropdown" style="float:left;">
+        <button class="dropbtn {% is_app 'home' %}"><a href="{% url 'home.views.index' %}">Home</a></button>
+      </div>
+      <div class="dropdown" style="float:left;">
+        <button class="dropbtn {% is_app 'blog' %}"><a href="{% url 'post_list' %}">Blog</a></button>
+        <div class="dropdown-content" style="left:0;">
+            <a href="{% url 'post_list' %}">Index</a>
+            <a href="{% url 'post_new' %}">Add</a>
+            <a href="{% url 'post_draft_list' %}">Drafts</a>
+        </div>
+      </div>
+      <!-- RIGHT = FIFO! -->
+      <div class="dropdown" style="float:right;">
+        <button class="dropbtn">
+          {% if request.user.is_authenticated %}
+          <a href="#">Hi {{request.user.username|capfirst}}</a>
+          {% else %}
+          <a href="{% url 'django.contrib.auth.views.login' %}">Login</a>
+          {% endif %}
+        </button>
+        {% if request.user.is_authenticated %}
+        <div class="dropdown-content" style="left:0;">
+          {% if request.user.is_staff %}
+          <a href="/admin/">Admin</a>
+          {% endif %}
+          <a href="{% url 'django.contrib.auth.views.logout' %}">Logout</a>
+        </div>
+        {% endif %}
+      </div>
+      <div class="dropdown" style="float:right;">
+        <button class="dropbtn">About</button>
+        <div class="dropdown-content">
+          <a href="#">Contact</a>
+<!--
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+ -->
+        </div>
+      </div>
+    </div>
